@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+<title>گواهی مسابقه نقاشی کشوری | راسم</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;900&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --yellow:#FFC90D;
+  --yellow-dark:#e6b400;
+  --red:#e21c21;
+  --red-dark:#ad090d;
+  --black:#111;
+  --white:#fff;
+  --font:'Vazirmatn',Tahoma,sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--yellow);
+  font-family:var(--font);
+  color:var(--black);
+  margin:0;
+  overflow-x:hidden;
+}
+
+/* ── MAIN CONTAINER ── */
+.main-wrapper{
+  max-width:480px;
+  margin:0 auto;
+  background:var(--yellow);
+}
+
+/* ── HEADER ── */
+.site-header{
+  background:#2a2a2a;
+  padding:14px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:sticky;
+  top:0;
+  z-index:100;
+  width:100%;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+.logo-area {
+  display:flex;
+  align-items:center;
+}
+.logo-placeholder-box {
+  border: 1px dashed var(--yellow);
+  color: var(--yellow);
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  border-radius: 6px;
+  opacity: 0.9;
+}
+.menu-btn{
+  background:none;border:none;cursor:pointer;
+  display:flex;flex-direction:column;gap:5px;
+  transition:gap 0.3s ease;
+  flex-shrink:0;
+}
+.menu-btn:hover{
+  gap:8px;
+}
+.menu-btn span{
+  display:block;width:28px;height:3px;
+  background:var(--yellow);border-radius:3px;
+  transition:all 0.3s ease;
+}
+
+/* ── DRAWER MENU ── */
+.drawer-overlay{
+  position:fixed;inset:0;
+  background:rgba(0,0,0,0.5);
+  z-index:999;
+  opacity:0;visibility:hidden;
+  transition:opacity 0.3s ease;
+}
+.drawer-overlay.active{
+  opacity:1;visibility:visible;
+}
+.drawer-menu{
+  position:fixed;top:0;bottom:0;right:-280px;left:auto;
+  width:260px;background:#fff;
+  z-index:1000;
+  transition:right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding:20px 30px;
+  box-shadow:-2px 0 15px rgba(0,0,0,0.2);
+  display:flex;flex-direction:column;
+}
+.drawer-menu.active{
+  right:0;left:auto;
+}
+.drawer-close{
+  align-self:flex-end;background:none;border:none;
+  font-size:2rem;color:#555;cursor:pointer;
+  line-height:1;margin-bottom:20px;
+}
+.drawer-links{
+  list-style:none;display:flex;flex-direction:column;gap:24px;
+}
+.drawer-links a{
+  text-decoration:none;color:#333;font-size:1.1rem;
+  font-weight:700;transition:color 0.2s;
+}
+.drawer-links a:hover{color:var(--red);}
+
+/* ── HERO BANNER ── */
+.hero{
+  padding:28px 20px 0;
+  text-align:center;
+}
+.hero-badge{
+  display:inline-block;
+  background:var(--red);
+  color:#fff;
+  font-size:0.8rem;
+  font-weight:900;
+  padding:6px 20px;
+  border-radius:30px;
+  margin-bottom:14px;
+  animation:bounce 1.5s infinite;
+}
+@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);}}
+.hero h1{
+  font-size:1.9rem;
+  font-weight:900;
+  line-height:1.3;
+  margin-bottom:8px;
+}
+.hero h1 span{color:var(--red);}
+.hero-sub{
+  font-size:1rem;
+  font-weight:700;
+  margin-bottom:20px;
+  color:#333;
+}
+
+/* ── VIDEO SECTION (SMART PLAYER) ── */
+.tv-wrapper{
+  padding:10px 10px 0;
+  position:relative;
+}
+.tv-frame{
+  position:relative;
+  background:#1a1a1a;
+  border-radius:24px;
+  padding:14px 14px 6px;
+  box-shadow:0 8px 32px rgba(0,0,0,0.35);
+}
+.tv-screen{
+  background:#000;
+  border-radius:14px;
+  overflow:hidden;
+  aspect-ratio:16/10;
+  position:relative;
+  cursor: pointer;
+}
+.tv-screen video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* Video Overlay */
+.video-overlay{
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  transition: opacity 0.4s;
+}
+.video-overlay.hidden { opacity: 0; pointer-events: none; }
+.pulse-icon {
+  width: 50px; height: 50px;
+  background: var(--red);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 10px;
+  animation: pulse-red 2s infinite;
+}
+.pulse-icon svg { width: 24px; fill: white; }
+.overlay-text { color: white; font-size: 0.85rem; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+
+@keyframes pulse-red {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(226, 28, 33, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(226, 28, 33, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(226, 28, 33, 0); }
+}
+
+.video-controls{
+  position:absolute;
+  bottom:10px;
+  left:10px;
+  right:10px;
+  z-index:10;
+  display:flex;
+  align-items: center;
+  gap:12px;
+  background: rgba(0,0,0,0.5);
+  padding: 6px 14px; 
+  border-radius: 30px; 
+  backdrop-filter: blur(4px);
+  width: fit-content;
+}
+.sound-btn{
+  background:none;
+  border:none;
+  display:grid;place-items:center;
+  cursor:pointer;
+}
+.sound-btn svg{width:20px;height:20px;fill:#fff;}
+
+/* Volume Slider */
+.volume-slider {
+  -webkit-appearance: none;
+  width: 70px; height: 4px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 5px; outline: none;
+}
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px; height: 12px;
+  background: var(--yellow);
+  border-radius: 50%; cursor: pointer;
+}
+
+.tv-base{
+  height:18px;
+  background:linear-gradient(to bottom,#2a2a2a,#1a1a1a);
+  border-radius:0 0 16px 16px;
+  margin:0 20px;
+}
+.tv-stand{
+  width:60px;height:12px;
+  background:#1a1a1a;
+  margin:0 auto;
+  border-radius:0 0 8px 8px;
+}
+
+/* ── COUNTDOWN ── */
+.countdown-section{
+  padding:24px 20px;
+}
+.section-label{
+  text-align:center;
+  font-size:0.75rem;
+  font-weight:900;
+  letter-spacing:0.1em;
+  color:#666;
+  margin-bottom:6px;
+}
+.countdown-title{
+  text-align:center;
+  font-size:1.15rem;
+  font-weight:900;
+  margin-bottom:18px;
+}
+.countdown-title span{color:var(--red);}
+.countdown-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+.cd-box{
+  background:var(--black);
+  border-radius:16px;
+  padding:16px 8px 12px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.cd-box::before{
+  content:'';position:absolute;
+  top:-20px;right:-20px;
+  width:60px;height:60px;
+  background:rgba(255,201,13,0.08);
+  border-radius:50%;
+}
+.cd-number{
+  font-size:2.4rem;
+  font-weight:900;
+  color:var(--yellow);
+  line-height:1;
+  display:block;
+}
+.cd-label{
+  font-size:0.75rem;
+  color:#aaa;
+  margin-top:4px;
+  display:block;
+}
+
+/* ── NOTICEBOARD (POST-IT) ── */
+.noticeboard{
+  margin:0 16px 24px;
+  background:#b5a98a;
+  border-radius:12px;
+  padding:20px 16px;
+  box-shadow:inset 0 2px 8px rgba(0,0,0,0.2),0 4px 16px rgba(0,0,0,0.15);
+  position:relative;
+}
+.noticeboard::before{
+  content:'';position:absolute;
+  inset:0;border-radius:12px;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
+  pointer-events:none;
+}
+.pin{
+  width:18px;height:18px;
+  background:radial-gradient(circle at 40% 35%,#ff6b6b,var(--red));
+  border-radius:50%;
+  position:absolute;
+  box-shadow:0 2px 6px rgba(0,0,0,0.4);
+}
+.pin-tl{top:-8px;right:20px;}
+.pin-tr{top:-8px;left:20px;}
+.noticeboard-title{
+  font-size:1.2rem;font-weight:900;
+  text-align:center;
+  margin-bottom:16px;
+  color:var(--red-dark);
+}
+.noticeboard-list{
+  list-style:none;
+  display:flex;flex-direction:column;gap:10px;
+}
+.noticeboard-list li{
+  display:flex;align-items:flex-start;gap:8px;
+  font-size:0.9rem;font-weight:700;
+  line-height:1.5;
+}
+.noticeboard-list li::before{
+  content:'✦';
+  color:var(--red);
+  flex-shrink:0;
+  margin-top:1px;
+}
+
+/* ── IMAGE SECTION ── */
+.image-section{
+  margin:0 16px 24px;
+}
+.image-title{
+  font-size:1.1rem;font-weight:900;
+  margin-bottom:12px;
+  padding-right:4px;
+}
+.image-title span{color:var(--red);}
+.image-frame{
+  width:100%;
+  border-radius:16px;
+  overflow:hidden;
+  background:#000;
+  display:block;
+}
+.image-frame img{
+  width:100%;
+  height:auto;
+  display:block;
+  border-radius:16px;
+}
+.image-placeholder{
+  width:100%;
+  aspect-ratio:4/3;
+  background:linear-gradient(135deg,#e8d88a,#c9b55a);
+  border-radius:16px;
+  border:3px dashed rgba(0,0,0,0.2);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:10px;
+  position:relative;
+  overflow:hidden;
+}
+
+/* ── PRICING ── */
+.pricing-section{
+  padding:0 16px 24px;
+  scroll-margin-top: 80px;
+}
+.pricing-title{
+  font-size:1.2rem;font-weight:900;
+  margin-bottom:14px;
+  text-align:center;
+}
+.pricing-title span{color:var(--red);}
+.pricing-cards{
+  display:flex;flex-direction:column;gap:12px;
+}
+.price-card{
+  background:var(--black);
+  border-radius:16px;
+  padding:16px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:relative;
+  overflow:hidden;
+}
+.price-card.featured{
+  background:linear-gradient(135deg,#1a1a1a,#2a2014);
+  border:2px solid var(--yellow);
+  padding-left: 55px;
+}
+.price-card.featured::before{
+  content:'پرطرفدار';
+  position:absolute;top:16px;left:-32px;
+  background:var(--red);
+  color:#fff;
+  font-size:0.65rem;font-weight:900;
+  padding:4px 35px;
+  transform:rotate(-45deg);
+  z-index: 1;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+.price-amount{
+  text-align:left;
+  position: relative;
+  z-index: 2;
+}
+.price-type{
+  font-size:0.95rem;font-weight:900;
+  color:var(--yellow);
+  margin-bottom:4px;
+}
+.price-desc{
+  font-size:0.75rem;color:#999;
+}
+.price-number{
+  font-size:1.5rem;font-weight:900;
+  color:var(--yellow);
+  display:block;
+  line-height:1;
+}
+.price-unit{
+  font-size:0.7rem;color:#999;
+}
+
+/* ── FAQ SECTION (سوالات متداول) ── */
+.faq-section{
+  margin:0 16px 24px;
+}
+.faq-title{
+  font-size:1.2rem; font-weight:900;
+  text-align:center; margin-bottom:14px;
+}
+.faq-container{
+  display:flex; flex-direction:column; gap:8px;
+}
+.faq-item{
+  background:#fff; border-radius:12px; overflow:hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.faq-trigger{
+  width:100%; padding:14px 16px; background:none; border:none;
+  text-align:right; font-family:var(--font); font-size:0.95rem;
+  font-weight:700; color:var(--black); cursor:pointer;
+  display:flex; justify-content:space-between; align-items:center;
+}
+.faq-icon {
+  font-size:0.8rem; transition: transform 0.2s; font-weight:900;
+}
+.faq-content{
+  max-height:0; overflow:hidden; transition: max-height 0.25s ease-out;
+  background:#fcfcfc; color:#555; font-size:0.85rem; line-height:1.6;
+}
+.faq-content-inner{
+  padding:0 16px 14px;
+}
+.faq-item.active .faq-icon{
+  transform: rotate(180deg);
+}
+.faq-item.active .faq-content{
+  max-height:150px;
+}
+
+/* ── CTA ── */
+.cta-section{
+  padding:0 16px 32px;
+  display:flex;flex-direction:column;gap:12px;
+}
+.cta-btn{
+  display:block;width:100%;
+  padding:16px;
+  border-radius:50px;
+  font-family:var(--font);
+  font-size:1.1rem;
+  font-weight:900;
+  text-align:center;
+  cursor:pointer;
+  border:none;
+  transition:transform 0.15s,box-shadow 0.15s;
+  text-decoration:none;
+}
+.cta-btn:active{transform:scale(0.97);}
+.cta-primary{
+  background:var(--red);
+  color:#fff;
+  box-shadow:0 6px 24px rgba(226,28,33,0.4);
+}
+.cta-secondary{
+  background:var(--black);
+  color:var(--yellow);
+  box-shadow:0 4px 16px rgba(0,0,0,0.3);
+}
+
+/* ── FOOTER ── */
+.site-footer{
+  background:var(--black);
+  padding:20px;
+  text-align:center;
+}
+.footer-text{
+  color:var(--yellow);
+  font-size:0.8rem;
+  font-weight:700;
+  line-height:1.8;
+}
+.footer-text span{color:#fff;}
+
+/* ── ANIMATIONS ── */
+.fade-in{
+  opacity:0;transform:translateY(30px);
+  transition:opacity 0.6s ease,transform 0.6s ease;
+}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+
+/* ===== Countdown Board ===== */
+.countdown-section{padding:20px 12px;}
+.countdown-board{position:relative;max-width:480px;margin:auto;}
+.board-image{width:100%;display:block;}
+.board-title{
+position:absolute;top:33%;left:50%;transform:translateX(-50%);
+width:75%;text-align:center;font-size:1rem;font-weight:900;color:#111;line-height:1.6;
+}
+.board-title span{color:#c62828;}
+.board-timer{
+position:absolute;top:43%;left:50%;transform:translateX(-50%);
+width:82%;display:flex;justify-content:center;align-items:flex-end;gap:4px;
+}
+.timer-item{display:flex;flex-direction:column;align-items:center;min-width:52px;}
+.timer-number{font-size:2rem;font-weight:900;color:#b71c1c;line-height:1;}
+.timer-label{margin-top:8px;font-size:.72rem;color:#b71c1c;font-weight:700;}
+.timer-separator{color:#b71c1c;font-size:2rem;font-weight:900;padding-bottom:18px;}
+
+
+.header-logo{height:56px;max-width:180px;object-fit:contain;}
+.desktop-nav{display:flex;gap:18px;flex:1;justify-content:center;}
+.desktop-nav a{text-decoration:none;color:#fff;font-weight:700;font-size:.95rem;}
+.header-icons{display:flex;gap:10px;align-items:center;}
+.header-icon{width:42px;height:42px;object-fit:contain;}
+.drawer-close{position:absolute;left:18px;top:10px;font-size:2.4rem!important;}
+
+@media (max-width:900px){
+.desktop-nav{display:none;}
+.menu-btn{display:flex;}
+}
+
+@media (min-width:901px){
+.menu-btn{display:none;}
+}
+
+
+/* === CUSTOM HEADER / SOCIAL / FOOTER === */
+.site-header{
+  padding:22px 20px !important;
+  flex-wrap:wrap;
+}
+.header-logo{
+  height:90px !important;
+  max-width:260px !important;
+}
+.header-icons{
+  order:2;
+}
+.header-icon{
+  width:52px !important;
+  height:52px !important;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+}
+.header-icons{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.desktop-nav{
+  width:100%;
+  order:3;
+  margin-top:12px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+.desktop-nav a{
+  color:#FFC90D !important;
+  font-size:1.05rem !important;
+}
+
+.social-follow{
+  margin:20px 0 0;
+  text-align:center;
+}
+.social-title{
+  background:#222;
+  color:#FFC90D;
+  display:inline-block;
+  padding:10px 25px;
+  border-radius:30px;
+  margin-bottom:20px;
+  font-weight:700;
+}
+.social-grid{
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  flex-wrap:wrap;
+}
+.social-item img{
+  width:78px;
+  height:78px;
+  object-fit:contain;
+}
+
+.site-footer{
+  background:#000 !important;
+  padding:40px 20px !important;
+}
+.footer-info{
+  max-width:480px;
+  margin:auto;
+}
+.footer-row{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:15px;
+  margin:18px 0;
+  color:#FFC90D;
+  font-size:1.15rem;
+  font-weight:700;
+}
+.footer-row img{
+  width:64px;
+  height:64px;
+  object-fit:contain;
+}
+
+
+.footer-info{
+ display:flex;
+ flex-direction:column;
+ gap:28px;
+ align-items:center;
+}
+.footer-row{
+ width:100%;
+ max-width:700px;
+ display:flex !important;
+ flex-direction:row-reverse;
+ align-items:center;
+ justify-content:flex-start;
+ gap:18px;
+ text-align:right;
+}
+.footer-row img{
+ flex-shrink:0;
+ width:72px !important;
+ height:72px !important;
+}
+.footer-row span{
+ flex:1;
+ line-height:1.8;
+}
+
+.board-timer{
+ left:48% !important;
+}
+
+
+/* FINAL HEADER + FOOTER FIX */
+.site-header{
+  min-height:unset !important;
+  align-items:center !important;
+  flex-wrap:wrap;
+  padding:14px 20px !important;
+  gap:10px;
+}
+/* ردیف اول هدر: لوگو سمت راست، آیکون‌ها سمت چپ */
+.header-right{
+  order:1;
+  flex-shrink:0;
+}
+.header-icons{
+  order:2;
+  margin-right:0;
+  margin-left:auto;
+  margin-top:0;
+  flex-direction:row-reverse;
+}
+/* ردیف دوم: منو زیر لوگو و آیکون‌ها */
+.desktop-nav{
+  order:3;
+  width:100%;
+  margin-top:10px !important;
+  border-top:1px solid rgba(255,201,13,0.2);
+  padding-top:10px;
+}
+/* شبکه‌های اجتماعی: راست به چپ - بله، روبیکا، ایتا، سروش */
+.social-grid{
+  flex-direction:row !important;
+  direction:rtl;
+}
+.footer-row{
+  flex-direction:row !important;
+  justify-content:flex-start !important;
+}
+
+</style>
+</head>
+<body>
+
+
+<header class="site-header">
+  <!-- راست: لوگو -->
+  <div class="header-right">
+    <img src="logo.png" class="header-logo" alt="logo">
+  </div>
+
+  <!-- چپ: آیکون‌های share، info، question از راست به چپ + دکمه منو موبایل -->
+  <div class="header-icons">
+    <img src="share.png" class="header-icon" alt="share">
+    <img src="info.png" class="header-icon" alt="info">
+    <img src="questionmark.png" class="header-icon" alt="question">
+    <button class="menu-btn" aria-label="منو" onclick="toggleDrawer()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <!-- ردیف دوم: منو زیر لوگو و آیکون‌ها -->
+  <nav class="desktop-nav">
+    <a href="javascript:void(0)" onclick="demoLink()">خانه</a>
+    <a href="javascript:void(0)" onclick="demoLink()">بلاگ</a>
+    <a href="javascript:void(0)" onclick="demoLink()">مسابقه</a>
+    <a href="javascript:void(0)" onclick="demoLink()">جایزه</a>
+    <a href="javascript:void(0)" onclick="demoLink()">گواهی</a>
+    <a href="javascript:void(0)" onclick="demoLink()">ارتباط با ما</a>
+    <a href="javascript:void(0)" onclick="demoLink()">درباره ما</a>
+  </nav>
+</header>
+
+
+<div class="drawer-overlay" id="drawerOverlay" onclick="toggleDrawer()"></div>
+<div class="drawer-menu" id="drawerMenu">
+  <button class="drawer-close" onclick="toggleDrawer()">&times;</button>
+  <ul class="drawer-links">
+    <li><a href="javascript:void(0)" onclick="demoLink()">خانه</a></li>
+    <li><a href="javascript:void(0)" onclick="demoLink()">بلاگ</a></li>
+    <li><a href="javascript:void(0)" onclick="demoLink()">مسابقه</a></li>
+    <li><a href="javascript:void(0)" onclick="demoLink()">جایزه</a></li>
+    <li><a href="javascript:void(0)" onclick="demoLink()">گواهی</a></li>
+    <li><a href="javascript:void(0)" onclick="demoLink()">ارتباط با ما</a></li>
+    <li><a href="javascript:void(0)" onclick="demoLink()">درباره ما</a></li>
+  </ul>
+</div>
+
+<div class="main-wrapper">
+  
+  <section class="hero fade-in">
+    <div class="hero-badge">ثبت نام محدود است!</div>
+    <h1>گواهی رسمی<br/><span>استعداد برتر ملی</span></h1>
+    <p class="hero-sub">مسابقه نقاشی کشوری ۱۴۰۴</p>
+  </section>
+
+  <section class="tv-wrapper fade-in">
+    <div class="tv-frame">
+      <div class="tv-screen" onclick="enableSound()">
+        
+        <div class="video-overlay" id="videoOverlay">
+            <div class="pulse-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 3v18l-6-6H2V9h4l6-6zm4.5 9c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.26 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77 0-4.28-2.99-7.86-7-8.77z"/></svg>
+            </div>
+            <span class="overlay-text">برای شنیدن صدا کلیک کنید</span>
+        </div>
+
+        <video id="mainVideo" autoplay loop muted playsinline>
+          <source src="demo.mp4" type="video/mp4"/>
+        </video>
+        
+        <div class="video-controls">
+          <button class="sound-btn" onclick="toggleMute(event)" title="روشن/خاموش کردن صدا">
+            <svg id="iconMuted" viewBox="0 0 24 24"><path d="M16.5 12A4.5 4.5 0 0014 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51A8.796 8.796 0 0021 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06A8.99 8.99 0 0017.73 18l1.73 1.73L21 18.46l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+            <svg id="iconSound" viewBox="0 0 24 24" style="display:none"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0014 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77 0-4.28-2.99-7.86-7-8.77z"/></svg>
+          </button>
+          <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.1" value="0" onclick="event.stopPropagation()">
+        </div>
+
+      </div>
+      <div class="tv-base"></div>
+      <div class="tv-stand"></div>
+    </div>
+  </section>
+
+  
+<section class="countdown-section fade-in">
+
+  <div class="countdown-board">
+
+    <img src="board.jpg" alt="برد شمارش معکوس" class="board-image" onerror="this.style.display='none'">
+
+    <div class="board-title">
+      چه قدر وقت تا <span>پایان مسابقه</span> باقی مانده؟
+    </div>
+
+    <div class="board-timer">
+
+      <div class="timer-item">
+        <span class="timer-number" id="cd-seconds">۰۰</span>
+        <span class="timer-label">ثانیه</span>
+      </div>
+
+      <div class="timer-separator">:</div>
+
+      <div class="timer-item">
+        <span class="timer-number" id="cd-mins">۰۰</span>
+        <span class="timer-label">دقیقه</span>
+      </div>
+
+      <div class="timer-separator">:</div>
+
+      <div class="timer-item">
+        <span class="timer-number" id="cd-hours">۰۰</span>
+        <span class="timer-label">ساعت</span>
+      </div>
+
+      <div class="timer-separator">:</div>
+
+      <div class="timer-item">
+        <span class="timer-number" id="cd-days">۰۰</span>
+        <span class="timer-label">روز</span>
+      </div>
+
+      <div class="timer-separator">:</div>
+
+      <div class="timer-item">
+        <span class="timer-number" id="cd-weeks">۰۰</span>
+        <span class="timer-label">هفته</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+  <div class="noticeboard fade-in">
+    <div class="pin pin-tl"></div>
+    <div class="pin pin-tr"></div>
+    <h3 class="noticeboard-title">چرا این گواهی ارزش داره؟</h3>
+    <ul class="noticeboard-list">
+      <li>صادرشده توسط دبیرخانه مسابقه نقاشی کشوری</li>
+      <li>دارای هولوگرام و کد رهگیری اختصاصی</li>
+      <li>مناسب رزومه و پرونده تحصیلی دانش‌آموزی</li>
+      <li>گواهی فارسی قابل ترجمه رسمی</li>
+      <li>گواهی انگلیسی مجزا</li>
+    </ul>
+  </div>
+
+  <section class="image-section fade-in">
+    <h3 class="image-title">نمونه <span>گواهی</span></h3>
+    <div class="image-frame">
+      <img src="cert.jpg" alt="نمونه گواهی" loading="lazy"
+           onerror="this.parentElement.innerHTML='<div class=\'image-placeholder\'><p class=\'img-text\'>عکس گواهی اینجا نمایش داده می‌شود</p><p class=\'img-sub\'>فایل certificate.jpg را در همین فولدر قرار دهید</p></div>'"/>
+    </div>
+  </section>
+
+  <section class="pricing-section fade-in" id="pricing">
+    <h3 class="pricing-title">هزینه دریافت <span>گواهی</span></h3>
+    <div class="pricing-cards">
+      <div class="price-card">
+        <div class="price-card-right">
+          <div class="price-type">گواهی فارسی</div>
+          <div class="price-desc">صادره توسط دبیرخانه کشوری</div>
+        </div>
+        <div class="price-amount">
+          <span class="price-number">۱۵۰,۰۰۰</span>
+          <span class="price-unit">تومان</span>
+        </div>
+      </div>
+      <div class="price-card featured">
+        <div class="price-card-right">
+          <div class="price-type">گواهی فارسی + انگلیسی</div>
+          <div class="price-desc">هر دو گواهی با هم</div>
+        </div>
+        <div class="price-amount">
+          <span class="price-number">۲۵۰,۰۰۰</span>
+          <span class="price-unit">تومان</span>
+        </div>
+      </div>
+      <div class="price-card">
+        <div class="price-card-right">
+          <div class="price-type">گواهی انگلیسی</div>
+          <div class="price-desc">قابل ترجمه رسمی</div>
+        </div>
+        <div class="price-amount">
+          <span class="price-number">۱۸۰,۰۰۰</span>
+          <span class="price-unit">تومان</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq-section fade-in">
+    <h3 class="faq-title">سوالات متداول</h3>
+    <div class="faq-container">
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          <span>گواهی چطور به دست من می‌رسد؟</span>
+          <span class="faq-icon">▼</span>
+        </button>
+        <div class="faq-content">
+          <div class="faq-content-inner">
+            نسخه دیجیتال با کیفیت بالا بلافاصله پس از صدور در پنل شما قرار می‌گیرد. نسخه فیزیکی نیز چاپ شده و از طریق پست به آدرس ثبت‌شده شما ارسال خواهد شد.
+          </div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          <span>چقدر زمان می‌برد تا گواهی صادر شود؟</span>
+          <span class="faq-icon">▼</span>
+        </button>
+        <div class="faq-content">
+          <div class="faq-content-inner">
+            فرآیند بررسی نهایی آثار و صدور گواهی‌های رسمی معمولاً بین ۳ تا ۵ روز کاری زمان می‌برد.
+          </div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          <span>آیا این گواهی معتبر و قابل پیگیری است؟</span>
+          <span class="faq-icon">▼</span>
+        </button>
+        <div class="faq-content">
+          <div class="faq-content-inner">
+            بله، تمام گواهی‌ها دارای هولوگرام رسمی، مهر دبیرخانه کشوری و کد رهگیری اختصاصی هستند که به صورت آنلاین قابل استعلام است.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section fade-in">
+    <a href="#pricing" class="cta-btn cta-primary">همین الان گواهی‌ات رو ثبت کن!</a>
+    <a href="javascript:void(0)" onclick="demoLink()" class="cta-btn cta-secondary">اطلاعات بیشتر درباره مسابقه</a>
+  </section>
+
+  
+<section class="social-follow">
+  <div class="social-title">در شبکه های اجتماعی منتظر هستیم، ما رو دنبال کن!</div>
+  <div class="social-grid">
+    <div class="social-item"><img src="bale.png" alt="بله"></div>
+    <div class="social-item"><img src="rubika.png" alt="روبیکا"></div>
+    <div class="social-item"><img src="eita.png" alt="ایتا"></div>
+    <div class="social-item"><img src="soroush.png" alt="سروش"></div>
+  </div>
+</section>
+
+
+<footer class="site-footer">
+  <div class="footer-info">
+    <div class="footer-row"><img src="org1.png" alt=""><span>موسسه فرهنگی هنری کتان آرتا رسام</span></div>
+    <div class="footer-row"><img src="phone.png" alt=""><span>۰۹۳۹۲۵۸۱۲۷۷ - ۰۲۱-۲۲۷۹۰۶۴</span></div>
+    <div class="footer-row"><img src="location.png" alt=""><span>تهران - خیابان دولت - بلوار کاوه - خ مطهری - پلاک ۶</span></div>
+  </div>
+</footer>
+
+
+</div>
+
+<script>
+// ── DRAWER MENU TOGGLE ──
+function toggleDrawer() {
+  document.getElementById('drawerMenu').classList.toggle('active');
+  document.getElementById('drawerOverlay').classList.toggle('active');
+}
+
+// ── DEMO LINKS ──
+function demoLink() {
+  alert("صفحه شما:\n\nاین یک لینک آزمایشی است. کارفرما می‌تواند لینک و صفحات مقصد خود را اینجا متصل کند.");
+}
+
+// ── FAQ TOGGLE ──
+function toggleFaq(button) {
+  const item = button.parentElement;
+  item.classList.toggle('active');
+}
+
+// ── SMART VIDEO LOGIC ──
+const video = document.getElementById('mainVideo');
+const overlay = document.getElementById('videoOverlay');
+const slider = document.getElementById('volumeSlider');
+const iconMuted = document.getElementById('iconMuted');
+const iconSound = document.getElementById('iconSound');
+
+function updateIconState() {
+    if (video.muted || video.volume == 0) {
+        iconMuted.style.display = 'block';
+        iconSound.style.display = 'none';
+    } else {
+        iconMuted.style.display = 'none';
+        iconSound.style.display = 'block';
+    }
+}
+
+function enableSound() {
+    if(!video.muted && video.volume > 0) return; // اگر قبلا روشن شده کاری نکن
+    video.muted = false;
+    video.volume = 0.5;
+    slider.value = 0.5;
+    overlay.classList.add('hidden');
+    updateIconState();
+}
+
+slider.addEventListener('input', (e) => {
+    video.volume = e.target.value;
+    video.muted = e.target.value == 0;
+    updateIconState();
+});
+
+function toggleMute(e) {
+    e.stopPropagation();
+    video.muted = !video.muted;
+    
+    // اگر از حالت میوت خارج شد اما اسلایدر روی صفر بود، یک صدای پیش‌فرض تنظیم کن
+    if (!video.muted && video.volume == 0) {
+        video.volume = 0.5;
+    }
+    
+    slider.value = video.muted ? 0 : video.volume;
+    updateIconState();
+}
+
+// ── PERSISTENT COUNTDOWN (LocalStorage) ──
+function getExpiryDate() {
+    let storedDate = localStorage.getItem('campaign_expiry');
+    if (!storedDate) {
+        // اگر کاربر بار اول است که وارد می‌شود، تایمر برای 3 روز آینده تنظیم می‌شود
+        let expiry = new Date().getTime() + (3 * 24 * 60 * 60 * 1000);
+        localStorage.setItem('campaign_expiry', expiry);
+        return expiry;
+    }
+    return parseInt(storedDate);
+}
+
+
+function updateCountdown() {
+
+    const now = new Date().getTime();
+    const diff = getExpiryDate() - now;
+
+    const toFA = n => n.toString().padStart(2,'0')
+      .replace(/0/g,'۰').replace(/1/g,'۱').replace(/2/g,'۲')
+      .replace(/3/g,'۳').replace(/4/g,'۴').replace(/5/g,'۵')
+      .replace(/6/g,'۶').replace(/7/g,'۷').replace(/8/g,'۸').replace(/9/g,'۹');
+
+    if(diff <= 0){
+        ['cd-weeks','cd-days','cd-hours','cd-mins','cd-seconds']
+        .forEach(id => document.getElementById(id).textContent='۰۰');
+        return;
+    }
+
+    const totalDays = Math.floor(diff / 86400000);
+    const weeks = Math.floor(totalDays / 7);
+    const days = totalDays % 7;
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const mins = Math.floor((diff % 3600000) / 60000);
+    const secs = Math.floor((diff % 60000) / 1000);
+
+    document.getElementById('cd-weeks').textContent = toFA(weeks);
+    document.getElementById('cd-days').textContent = toFA(days);
+    document.getElementById('cd-hours').textContent = toFA(hours);
+    document.getElementById('cd-mins').textContent = toFA(mins);
+    document.getElementById('cd-seconds').textContent = toFA(secs);
+}
+updateCountdown();
+
+setInterval(updateCountdown, 1000);
+
+// ── SCROLL REVEAL ──
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, {threshold: 0.1});
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
